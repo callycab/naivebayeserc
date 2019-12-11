@@ -49,10 +49,13 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
   Y = split_data$Y
   quanti = split_data$quanti
 
+  instance$Y = colnames(Y)
+
   # Suppression des lignes pour lesquelles ont a pas les classes
   quali = as.data.frame(quali[complete.cases(Y), ])
   quanti = as.data.frame(quanti[complete.cases(Y), ])
   Y = as.data.frame(Y[complete.cases(Y), ])
+
 
   # S'il y a des quantis on discretise
   if(ncol(quanti)>0){
@@ -86,7 +89,6 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
   }
 
   X = data # X = X apres discretisation
-  instance$Y = colnames(Y)
 
   # Appel a la selection de variables
   if (selectvar){
