@@ -21,11 +21,6 @@
 #' df$Species = as.factor(df$Species)
 #' bayes = fit(f, df, discretise = "rpart")
 fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
-  # formula : formule
-  # data : dataframe des donnees
-  # m : laplacien, par defaut m = 1
-  # discretise : methode de discretisation (rpart ou mdlp)
-  # selectvar : par defaut selectvar = TRUE donc selection de variable realisee
 
   # Controle sur les parametres
   if (!is.data.frame(data)){
@@ -83,7 +78,6 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
     data = quali
   }
 
-  # Decoupage des data en fonction de formula
   X = data # X = X apres discretisation
   instance$Y = colnames(Y)
 
@@ -139,11 +133,6 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
 #' bayes = fit(f, df, discretise = "rpart")
 #' pred = predict(bayes, df)
 predict.NBAYES = function(object, newdata, type="class"){
-  # object : objet retourne par le fit
-  # newdata : nouvelles donnees a predire
-  # type : objet retourne (class = classe predite, posterior : proba d'appartenir aux classes), par defaut class
-
-
   # Controles sur les parametres
   if (!class(object) == "NBAYES"){
     stop("the object must be of class NBAYES, not", class(object),". Use the function fit.")
@@ -161,13 +150,14 @@ predict.NBAYES = function(object, newdata, type="class"){
   }
 
   # On garde uniquement les variables necessaires pour notre modele
-  newdata = newdata[c(object$X, object$Y)]
+  #newdata = newdata[c(object$X, object$Y)]
+  newdata = newdata[c(object$X)]
   formula = as.formula(paste(object$Y,"~ ."))
 
   # Separation X (selon leur type) et Y
   split_data = splitdf(formula,newdata)
   quali = as.data.frame(split_data$quali)
-  Y = as.data.frame(split_data$Y)
+  #Y = as.data.frame(split_data$Y)
   quanti = as.data.frame(split_data$quanti)
 
   # S'il y a des quantis on discretise
