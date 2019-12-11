@@ -13,5 +13,5 @@ print.NBAYES = function(objet){
   print(objet$apriori)
   cat("\n")
   cat("Computed conditional probabilities :\n\n")
-  head(bayes$p_conditional)
+  print( head(bayes$p_conditional) )
 }
