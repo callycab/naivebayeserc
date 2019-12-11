@@ -23,3 +23,10 @@ A NBAYES object (S3)
 \description{
 Build a Naive Bayes Classifier model from a dataframe. It discretise variables, compute conditionnal probabilities and select variables if choosen.
 }
+\examples{
+data(iris)
+df = iris
+f = Species ~ .
+df$Species = as.factor(df$Species)
+bayes = fit(f, df, discretise = "rpart")
+}

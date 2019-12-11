@@ -28,45 +28,6 @@ splitdf = function(formula, data){
 }
 
 
-#' Discretise with MDLP method
-#' @description Discretise with mdlp method using the library FSelectorRcpp
-#'
-#' @param formula
-#' @param data
-#'
-#' @return A Dataframe with values discretised
-#' @export
-#'
-#' @import FSelectorRcpp
-#' @examples
-fit.mdlp = function(formula, data){
-  library(FSelectorRcpp)
-
-  # discretisation des quanti
-  quali_disc = FSelectorRcpp::discretize(formula, data)
-
-  return(quali_disc)
-}
-
-
-#' Discretise newdata by using the MDLP model
-#'
-#' @description  Discretise newdata by using the MDLP discretisation retuned by fit.mdlp
-#' @param intervals Dataframe of discretised variables by the fit.mdlp function (as a model).
-#' @param values New Dataframe to discretise. All the columns have to be present in the intervals parameter.
-#'
-#' @return A Dataframe with values discretised
-#' @export
-#'
-#' @import FSelectorRcpp
-#'
-#' @examples
-transform.mdlp = function(intervals, values){
-  values_disc = FSelectorRcpp::discretize_transform(intervals,values)
-  return(values_disc)
-}
-
-
 #' Discretise with rpart method
 #'
 #' @param Y

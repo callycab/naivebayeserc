@@ -70,6 +70,8 @@ merit_ <- function(y, X){
   }
 }
 
+#' Step-forward variables selection
+#'
 #' @description Methode used by fit.NBAYES to select variables. It is a step-forward algorithme
 #'
 #' @param y classe to predict

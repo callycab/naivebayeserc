@@ -19,3 +19,11 @@ A list with the predictions.
 \description{
 Classify new data from a NBAYES model
 }
+\examples{
+data(iris)
+df = iris
+f = Species ~ .
+df$Species = as.factor(df$Species)
+bayes = fit(f, df, discretise = "rpart")
+pred = predict(bayes, df)
+}

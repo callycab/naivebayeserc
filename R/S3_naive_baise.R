@@ -13,10 +13,12 @@
 #' @param selectvar Boolean to enable/disable variables selection (stepforward).
 #'
 #' @return A NBAYES object (S3)
+#' @importFrom FSelectorRcpp discretize
 #' @export
 #'
-#' @example
-#' df = data(iris)
+#' @examples
+#' data(iris)
+#' df = iris
 #' f = Species ~ .
 #' df$Species = as.factor(df$Species)
 #' bayes = fit(f, df, discretise = "rpart")
@@ -33,7 +35,7 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
   # Instanciation de l'objet
   instance = list()
 
-  # On gade les parametres utilises dans l'objet, afin de pouvoir les consulter/modifier ulterieurement
+  # On gade les parametres utilises dans l'objet, afin de pouvoir les consulter ulterieurement
   instance$formula = formula
   instance$data = data
 
@@ -47,6 +49,11 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
   Y = split_data$Y
   quanti = split_data$quanti
 
+  # Suppression des lignes pour lesquelles ont a pas les classes
+  quali = as.data.frame(quali[complete.cases(Y), ])
+  quanti = as.data.frame(quanti[complete.cases(Y), ])
+  Y = as.data.frame(Y[complete.cases(Y), ])
+
   # S'il y a des quantis on discretise
   if(ncol(quanti)>0){
     # Discretisation avec rpart
@@ -58,7 +65,7 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
       # Discretisation avec mldp
       f2 = as.formula(paste(colnames(Y),"~ .")) # nouvelle formula incluant uniquement les variables quantis
       quantiY = cbind(quanti,Y)
-      disc = fit.mdlp(f2, quantiY)
+      disc = FSelectorRcpp::discretize(f2, quantiY)
       instance$disc.values = disc
       disc = disc[,colnames(disc) != colnames(Y)]
     } else{
@@ -80,10 +87,6 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
 
   X = data # X = X apres discretisation
   instance$Y = colnames(Y)
-
-  # Suppression des lignes avec des NA
-  Y = as.data.frame(Y[complete.cases(X), ])
-  X = as.data.frame(X[complete.cases(X), ])
 
   # Appel a la selection de variables
   if (selectvar){
@@ -124,10 +127,13 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
 #' @param type String to choose the format of the output. Can be "class" to only have predicted classes, or "posterior" to have the posterior probability for each class.
 #'
 #' @return A list with the predictions.
+#'
+#' @importFrom FSelectorRcpp discretize_transform
 #' @export
 #'
-#' @example
-#' df = data(iris)
+#' @examples
+#' data(iris)
+#' df = iris
 #' f = Species ~ .
 #' df$Species = as.factor(df$Species)
 #' bayes = fit(f, df, discretise = "rpart")
@@ -167,7 +173,7 @@ predict.NBAYES = function(object, newdata, type="class"){
       quanti_disc = transform.rpart(object$disc.values, quanti)
     }else{
       # Si la discretisation du fit etait mdlp
-      quanti_disc = transform.mdlp(object$disc.values, quanti)
+      quanti_disc = FSelectorRcpp::discretize_transform(object$disc.values, quanti)
     }
     # Merge des donnees
     if(ncol(quali)>0){
