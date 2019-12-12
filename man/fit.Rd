@@ -18,7 +18,27 @@ fit(formula,data, m=1, discretise="rpart", selectvar=TRUE)
 \item{selectvar}{Boolean to enable/disable variables selection (stepforward).}
 }
 \value{
-A NBAYES object (S3)
+A NBAYES object (S3) with attributs :
+
+This object has the following attributs:
+
+formula: The formula given by the user as parameter
+
+data: Dataframe given by the user as parameter
+
+m: Integer given by the user as parameter (or m=1)
+
+disc.param: Name of the methode used for discretising during the fit. It is "rpart" by default, or it can be "mdlp" if user submit it as parameter. Discretisation cannot be disabled.
+
+disc.values: Result of the discretisation of numeric values in the dataframe data. It is used in the function predict to apply the same discretisation as computed during the fit.
+
+Y: Name of the variable to classify. It is extract from the formula and used during the predict.
+
+X: List of kept values for the classification. It is the result of the formula, the discretisation (some variables can be rejected) and the variables selection if enabled.
+
+apriori: Table of prior probabilities for each modalities of Y.
+
+p_conditionnel: List of table of conditional probabilities, for each modalities of every variables.
 }
 \description{
 Build a Naive Bayes Classifier model from a dataframe. It discretise variables, compute conditionnal probabilities and select variables if choosen.

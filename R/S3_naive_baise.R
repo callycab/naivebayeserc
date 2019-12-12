@@ -12,7 +12,18 @@
 #' @param discretise String to choose the discretising method. Can be "rpart" (recommanded) or "MDLP".
 #' @param selectvar Boolean to enable/disable variables selection (stepforward).
 #'
-#' @return A NBAYES object (S3)
+#' @return A NBAYES object (S3) with attributs :
+#' @return This object has the following attributs:
+#' @return formula: The formula given by the user as parameter
+#' @return data: Dataframe given by the user as parameter
+#' @return m: Integer given by the user as parameter (or m=1)
+#' @return disc.param: Name of the methode used for discretising during the fit. It is "rpart" by default, or it can be "mdlp" if user submit it as parameter. Discretisation cannot be disabled.
+#' @return disc.values: Result of the discretisation of numeric values in the dataframe data. It is used in the function predict to apply the same discretisation as computed during the fit.
+#' @return Y: Name of the variable to classify. It is extract from the formula and used during the predict.
+#' @return X: List of kept values for the classification. It is the result of the formula, the discretisation (some variables can be rejected) and the variables selection if enabled.
+#' @return apriori: Table of prior probabilities for each modalities of Y.
+#' @return p_conditionnel: List of table of conditional probabilities, for each modalities of every variables.
+#'
 #' @importFrom FSelectorRcpp discretize
 #' @export
 #'
@@ -128,7 +139,7 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
 #' @param newdata Dataframe with data to classify. All the variables used by the model (see NBAYES$X) have to be present in the dataframe.
 #' @param type String to choose the format of the output. Can be "class" to only have predicted classes, or "posterior" to have the posterior probability for each class.
 #'
-#' @return A list with the predictions.
+#' @return A list with the predictions. The format depends on the parameter type.
 #'
 #' @importFrom FSelectorRcpp discretize_transform
 #' @export

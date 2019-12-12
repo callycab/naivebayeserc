@@ -1,7 +1,7 @@
 
-#' Split a dataframe by variables classes
+#' Split a dataframe
 #'
-#' @description Split a DataFrame in 3 part : categorial (quali), numeric (quanti) and the variable to predict(Y) if present
+#' @description Split a DataFrame in 3 parts : categorial (quali), numeric (quanti) and the variable to predict(Y) if present in data.
 #'
 #' @param formula
 #' @param data
@@ -9,6 +9,18 @@
 #' @return A list with 3 dataframes : quali, quanti and Y
 #' @import dplyr
 #' @export
+#'
+#' @examples
+#' data(ChickWeight)
+#' df = ChickWeight
+#' f = Diet ~ .
+#' result = splitdf(f, df)'
+#' categorial = result$quali
+#' Y = result$Y
+#' numeric = result$quanti
+#' print(colnames(categorial))
+#' print(colnames(numeric))
+#' print(colnames(Y))
 splitdf = function(formula, data){
   # Split quanti and quali
 

@@ -14,7 +14,7 @@ predict(object, newdata, type="class")
 \item{type}{String to choose the format of the output. Can be "class" to only have predicted classes, or "posterior" to have the posterior probability for each class.}
 }
 \value{
-A list with the predictions.
+A list with the predictions. The format depends on the parameter type.
 }
 \description{
 Classify new data from a NBAYES model

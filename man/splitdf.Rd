@@ -2,7 +2,7 @@
 % Please edit documentation in R/discretiseNB.R
 \name{splitdf}
 \alias{splitdf}
-\title{Split a dataframe by variables classes}
+\title{Split a dataframe}
 \usage{
 splitdf(formula, data)
 }
@@ -13,5 +13,5 @@ splitdf(formula, data)
 A list with 3 dataframes : quali, quanti and Y
 }
 \description{
-Split a DataFrame in 3 part : categorial (quali), numeric (quanti) and the variable to predict(Y) if present
+Split a DataFrame in 3 parts : categorial (quali), numeric (quanti) and the variable to predict(Y) if present in data.
 }
