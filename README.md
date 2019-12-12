@@ -2,8 +2,8 @@
 
 ## install from RStudio
 
-install.packages("devtools")\n
-install.packages("usethis")\n
+install.packages("devtools")
+install.packages("usethis")
 library(usethis)
 library(devtools)
 install_github("callycab/naivebayeserc")
