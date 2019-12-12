@@ -32,6 +32,8 @@ disc.param: Name of the methode used for discretising during the fit. It is "rpa
 
 disc.values: Result of the discretisation of numeric values in the dataframe data. It is used in the function predict to apply the same discretisation as computed during the fit.
 
+signif: Dataframe of significance of the link between each variable X and Y, it is used in Summary and Plot. It contains the statistics and the p-value for each variable X.
+
 Y: Name of the variable to classify. It is extract from the formula and used during the predict.
 
 X: List of kept values for the classification. It is the result of the formula, the discretisation (some variables can be rejected) and the variables selection if enabled.

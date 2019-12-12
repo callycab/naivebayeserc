@@ -19,6 +19,7 @@
 #' @return m: Integer given by the user as parameter (or m=1)
 #' @return disc.param: Name of the methode used for discretising during the fit. It is "rpart" by default, or it can be "mdlp" if user submit it as parameter. Discretisation cannot be disabled.
 #' @return disc.values: Result of the discretisation of numeric values in the dataframe data. It is used in the function predict to apply the same discretisation as computed during the fit.
+#' @return signif: Dataframe of significance of the link between each variable X and Y, it is used in Summary and Plot. It contains the statistics and the p-value for each variable X.
 #' @return Y: Name of the variable to classify. It is extract from the formula and used during the predict.
 #' @return X: List of kept values for the classification. It is the result of the formula, the discretisation (some variables can be rejected) and the variables selection if enabled.
 #' @return apriori: Table of prior probabilities for each modalities of Y.
