@@ -13,7 +13,7 @@ fit(formula,data, m=1, discretise="rpart", selectvar=TRUE)
 
 \item{m}{Integer to use the Laplacian in the calcul of probabilities.}
 
-\item{discretise}{String to choose the discretising method. Can be "rpart" (recommanded) or "MDLP".}
+\item{discretise}{String to choose the discretising method. Can be "rpart" (recommanded) or "mdlp".}
 
 \item{selectvar}{Boolean to enable/disable variables selection (stepforward).}
 }

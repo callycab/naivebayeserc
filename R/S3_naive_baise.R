@@ -9,7 +9,7 @@
 #' @param formula Formula to specifies which variables in data use to fit the model.
 #' @param data A dataframe with the data..
 #' @param m Integer to use the Laplacian in the calcul of probabilities.
-#' @param discretise String to choose the discretising method. Can be "rpart" (recommanded) or "MDLP".
+#' @param discretise String to choose the discretising method. Can be "rpart" (recommanded) or "mdlp".
 #' @param selectvar Boolean to enable/disable variables selection (stepforward).
 #'
 #' @return A NBAYES object (S3) with attributs :
