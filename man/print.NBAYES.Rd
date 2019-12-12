@@ -10,7 +10,7 @@
 \item{objet}{The NBAYES object returned by the fit function}
 }
 \value{
-Print some attributs of the NBAYES objects :
+Print some attributs of the NBAYES objects:
 
 Discretisation method used for the fit (disc.param)
 

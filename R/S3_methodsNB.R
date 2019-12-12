@@ -2,7 +2,7 @@
 #'
 #' @param objet The NBAYES object returned by the fit function
 #'
-#' @return Print some attributs of the NBAYES objects :
+#' @return Print some attributs of the NBAYES objects:
 #' @return Discretisation method used for the fit (disc.param)
 #' @return Varriable to classify (Y)
 #' @return Variables used by the model - only variables kept after discretisation and selection (X)
@@ -48,5 +48,5 @@ plot.NBAYES = function(objet){
   cat("Plot of the \"normalized\" statistics of the link between", objet$Y, "and each variable on the plot window")
   s <- sum(objet$signif[,"Statistic"])
   c <- objet$signif[, "Statistic"]
-  plot(c, t='l', main = 'Normalized statistics', xlab = objet$X, ylab = "part of the significance")
+  plot(c, t='l', main = 'Normalized statistics', xlab = "Sorted X variables", ylab = "part of the significance")
 }

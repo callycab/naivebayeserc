@@ -1,13 +1,14 @@
 Package: naivebayeserc
 Title: Naive Bayes Classifier
-Version: 0.0.0.9000
-Authors@R: 
+Version: 0.0.1.1200
+Authors@R: c(
     person(given = "Cedric",
            family = "Cally--caballero",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Package to make naive Bayes classification.
+           role = "cre",
+           email = "c.cally-caballero@univ-lyon2.fr"),
+    person("Emilie", "Tang", email = "emilie.tang@univ-lyon2.fr", role = "aut"),
+    person("Romain", "Broutin", email = "romain.broutin@univ-lyon2.fr", role = "aut"))
+Description: Package to build and use a naive Bayes classifier.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
