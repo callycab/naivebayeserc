@@ -122,7 +122,6 @@ selection_ <- function(y, X){
     } else {
       X_total <- X[var_total]
       X_rest <- as.data.frame(X[,!(colnames(X) %in% var_total)]) # definition du df des autres variables (celles pas encore selectionnees)
-     print(X_rest)
     }
     new_merit <- c() # vecteur contenant le nouveau merite pour l'ajout de chacune des autres variables
     for(j in 1:ncol(X_rest)){ # boucle sur chacune des autres variables
