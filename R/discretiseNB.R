@@ -14,7 +14,7 @@
 #' data(ChickWeight)
 #' df = ChickWeight
 #' f = Diet ~ .
-#' result = splitdf(f, df)'
+#' result = splitdf(f, df)
 #' categorial = result$quali
 #' Y = result$Y
 #' numeric = result$quanti

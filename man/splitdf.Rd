@@ -15,3 +15,15 @@ A list with 3 dataframes : quali, quanti and Y
 \description{
 Split a DataFrame in 3 parts : categorial (quali), numeric (quanti) and the variable to predict(Y) if present in data.
 }
+\examples{
+data(ChickWeight)
+df = ChickWeight
+f = Diet ~ .
+result = splitdf(f, df)
+categorial = result$quali
+Y = result$Y
+numeric = result$quanti
+print(colnames(categorial))
+print(colnames(numeric))
+print(colnames(Y))
+}
