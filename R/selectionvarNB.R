@@ -97,7 +97,7 @@ merit_ <- function(y, X){
 #' Step-forward variables selection
 #'
 #' @description Methode used by fit.NBAYES to select variables.
-#' @description It is a step-forward algorithme.
+#' @description It is an implementation of CFS (Correlation-based Feature Selection) method.
 #'
 #' @param y classe to predict
 #' @param X Dataframe of variables to choose from

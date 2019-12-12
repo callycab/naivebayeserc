@@ -17,7 +17,7 @@ A list with the name of selected variables
 \description{
 Methode used by fit.NBAYES to select variables.
 
-It is a step-forward algorithme.
+It is an implementation of CFS (Correlation-based Feature Selection) method.
 }
 \examples{
 data(iris)
