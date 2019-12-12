@@ -26,7 +26,7 @@ library(naivebayeserc)
 
 Two main functions are available : fit and predict.
 
-- fit is the constructor of the S3 class NBAYES. Use it to create your naive bayes classifier from a data and a formula.
+- fit is the constructor of the S3 class NBAYES. Use it to create your naive bayes classifier from a dataframe and a formula.
 - predict is used to classify new observations, from your created NBAYES model.
 
 Use ?fit and ?predict.NBAYES for more informations.
