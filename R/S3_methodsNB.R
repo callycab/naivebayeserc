@@ -18,7 +18,7 @@ print.NBAYES = function(objet){
   print(objet$apriori)
   cat("\n")
   cat("Computed conditional probabilities :\n\n")
-  print( head(bayes$p_conditional) )
+  print( head(object$p_conditional) )
 }
 
 #' Summary from NBAYES object
@@ -32,4 +32,21 @@ summary.NBAYES = function(objet){
   cat("Variables to classify:\n",objet$Y,"\n\n")
   cat("Significance of the link between", objet$Y, "and each variable:\n\n")
   print(objet$signif)
+}
+
+#' Summary from NBAYES object
+#'
+#' @description Plot the normalized statistics of the link between Y an each variable
+#' @param objet
+#'
+#' @return
+#' @export
+#'
+#' @examples
+plot.NBAYES = function(objet){
+  summary(objet)
+  cat("Plot of the \"normalized\" statistics of the link between", objet$Y, "and each variable on the plot window")
+  s <- sum(objet$signif[,"Statistic"])
+  c <- objet$signif[, "Statistic"]
+  plot(c, t='l', main = 'Normalized statistics', xlab = objet$X, ylab = "part of the significance")
 }

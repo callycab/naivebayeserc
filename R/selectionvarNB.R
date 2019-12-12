@@ -14,8 +14,8 @@ p_log2_p <- function(proba){
 ## Prend deux variables en entree et retourne l'information mutuelle
 I_ <- function(classe, variable){
   t_croise <- addmargins(prop.table(table(c(classe, variable))))
-  n_modalite_classe <- nrow(unique(classe))
-  n_modalite_variable <- nrow(unique(variable))
+  n_modalite_classe <- length(unique(classe[!is.na(classe),]))
+  n_modalite_variable <- length(unique(variable[!is.na(variable),]))
   I <- 0
   for(i in 1:n_modalite_classe){
     for(j in 1:n_modalite_variable){
