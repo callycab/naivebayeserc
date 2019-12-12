@@ -7,10 +7,20 @@
 \method{print}{NBAYES}(objet)
 }
 \arguments{
-\item{objet}{}
+\item{objet}{The NBAYES object returned by the fit function}
 }
 \value{
+Print some attributs of the NBAYES objects :
 
+Discretisation method used for the fit (disc.param)
+
+Varriable to classify (Y)
+
+Variables used by the model - only variables kept after discretisation and selection (X)
+
+Prior probabilities computed (apriori)
+
+COnditional probabilities (p_conditional)
 }
 \description{
 Print the NBAYES object

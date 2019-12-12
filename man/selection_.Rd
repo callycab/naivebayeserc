@@ -15,5 +15,7 @@ selection_(y, X)
 A list with the name of selected columns
 }
 \description{
-Methode used by fit.NBAYES to select variables. It is a step-forward algorithme
+Methode used by fit.NBAYES to select variables.
+
+It is a step-forward algorithme.
 }

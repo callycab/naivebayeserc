@@ -2,10 +2,12 @@
 
 S3method(predict,NBAYES)
 S3method(print,NBAYES)
+S3method(summary,NBAYES)
 S3method(transform,rpart)
 export(fit)
 export(fit.rpart)
 export(selection_)
+export(signification_)
 export(splitdf)
 import(dplyr)
 import(rpart)

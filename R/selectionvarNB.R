@@ -27,14 +27,33 @@ I_ <- function(classe, variable){
 
 ## Prend deux variables en entree et retourne la statistique G (lien entre les deux variables)
 G_ <- function(classe, variable){
+  variable = as.data.frame(variable)
   n <- nrow(classe)
   n_modalite_classe <- nrow(unique(classe))
   n_modalite_variable <- nrow(unique(variable))
   df <- (n_modalite_classe-1)*(n_modalite_variable-1)
-  g = list()
-  g$statistic <- 2*n*log(2)*I_(classe, variable)
-  g$p_value <- 1-pchisq(g$statistic, df)
+  g = c()
+  g["Statistic"] <- 2*n*log(2)*I_(classe, variable)
+  g["df"] <- df
+  g["p value"] <- 1-pchisq(g["Statistic"], df)
   return(g)
+}
+
+
+#' Compute the significance of the link between each variable X and Y
+#'
+#' @param y
+#' @param X
+#'
+#' @return
+#' @export
+#'
+#' @examples
+signification_ <- function(y, X){
+  signification <- apply(X, 2, G_, classe = y)
+  m <- t.default(as.matrix(signification))
+  m_ordered <- m[order(m[,"Statistic"], decreasing = TRUE),]
+  return(m_ordered)
 }
 
 ## Prend deux variables en entree et retourne l'indicateur symetrical uncertainty
@@ -72,7 +91,8 @@ merit_ <- function(y, X){
 
 #' Step-forward variables selection
 #'
-#' @description Methode used by fit.NBAYES to select variables. It is a step-forward algorithme
+#' @description Methode used by fit.NBAYES to select variables.
+#' @description It is a step-forward algorithme.
 #'
 #' @param y classe to predict
 #' @param X set of variables to choose

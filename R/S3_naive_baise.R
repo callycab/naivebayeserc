@@ -63,9 +63,16 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
   instance$Y = colnames(Y)
 
   # Suppression des lignes pour lesquelles ont a pas les classes
+  names_quali = colnames(quali)
   quali = as.data.frame(quali[complete.cases(Y), ])
+  colnames(quali) = names_quali
+
+  names_quanti = colnames(quanti)
   quanti = as.data.frame(quanti[complete.cases(Y), ])
+  colnames(quanti) = names_quanti
+
   Y = as.data.frame(Y[complete.cases(Y), ])
+  colnames(Y) = instance$Y
 
 
   # S'il y a des quantis on discretise
@@ -77,7 +84,7 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
       disc = disc$disc.data
     }else if(discretise == "mdlp"){
       # Discretisation avec mldp
-      f2 = as.formula(paste(colnames(Y),"~ .")) # nouvelle formula incluant uniquement les variables quantis
+      f2 = as.formula(paste(instance$Y,"~ .")) # nouvelle formula incluant uniquement les variables quantis
       quantiY = cbind(quanti,Y)
       disc = FSelectorRcpp::discretize(f2, quantiY)
       instance$disc.values = disc
@@ -101,6 +108,10 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
 
   X = data # X = X apres discretisation
 
+  # Calcul de la significativité des variables de X en fonction de Y.
+  # Ceci est indicatif et peut être affiché via Summary
+  instance$signif = signification_(y = Y, X = X)
+
   # Appel a la selection de variables
   if (selectvar){
     xselect = selection_(y = Y, X = X)
@@ -108,7 +119,6 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
   }
 
   instance$X = colnames(X) #X gardees apres selection de variables
-
 
   # Calcul des probabilites a priori
   classes = table(Y) # Differentes modalites (classes) possibles pour la variable a predire
