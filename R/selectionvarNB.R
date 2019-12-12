@@ -42,13 +42,18 @@ G_ <- function(classe, variable){
 
 #' Compute the significance of the link between each variable X and Y
 #'
-#' @param y
-#' @param X
+#' @param y Column Dataframe, Variable to compare others with. In practice, it is the variable of the classification
+#' @param X Dataframe containing all the others variables to compute the significance link with y
 #'
-#' @return
+#' @return Column Dataframe containing a score of link and the p-value
 #' @export
 #'
 #' @examples
+#' data(iris)
+#' df = iris
+#' y = df["Species"]
+#' X = df[colnames(df) != "Species"]
+#' signif = signification_(y,X)
 signification_ <- function(y, X){
   signification <- apply(X, 2, G_, classe = y)
   m <- t.default(as.matrix(signification))
@@ -95,13 +100,17 @@ merit_ <- function(y, X){
 #' @description It is a step-forward algorithme.
 #'
 #' @param y classe to predict
-#' @param X set of variables to choose
+#' @param X Dataframe of variables to choose from
 #'
-#' @return A list with the name of selected columns
+#' @return A list with the name of selected variables
 #' @export
 #'
 #' @examples
-## Algo de selection de variable
+#' data(iris)
+#' df = iris
+#' y = df["Species"]
+#' X = df[colnames(df) != "Species"]
+#' xselect = selection_(y,X)
 selection_ <- function(y, X){
   merit_total <- 0
   var_total <- c()

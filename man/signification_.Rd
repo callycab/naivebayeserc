@@ -7,11 +7,20 @@
 signification_(y, X)
 }
 \arguments{
-\item{X}{}
+\item{y}{Column Dataframe, Variable to compare others with. In practice, it is the variable of the classification}
+
+\item{X}{Dataframe containing all the others variables to compute the significance link with y}
 }
 \value{
-
+Column Dataframe containing a score of link and the p-value
 }
 \description{
 Compute the significance of the link between each variable X and Y
+}
+\examples{
+data(iris)
+df = iris
+y = df["Species"]
+X = df[colnames(df) != "Species"]
+signif = signification_(y,X)
 }

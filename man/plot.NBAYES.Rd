@@ -2,15 +2,12 @@
 % Please edit documentation in R/S3_methodsNB.R
 \name{plot.NBAYES}
 \alias{plot.NBAYES}
-\title{Summary from NBAYES object}
+\title{Plot from NBAYES object}
 \usage{
 \method{plot}{NBAYES}(objet)
 }
 \arguments{
-\item{objet}{}
-}
-\value{
-
+\item{objet}{NBAYES object}
 }
 \description{
 Plot the normalized statistics of the link between Y an each variable

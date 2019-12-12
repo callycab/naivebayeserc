@@ -3,8 +3,8 @@
 #'
 #' @description Split a DataFrame in 3 parts : categorial (quali), numeric (quanti) and the variable to predict(Y) if present in data.
 #'
-#' @param formula
-#' @param data
+#' @param formula formula to extract the Y value from
+#' @param data Dataframe with data to split
 #'
 #' @return A list with 3 dataframes : quali, quanti and Y
 #' @import dplyr
@@ -42,23 +42,25 @@ splitdf = function(formula, data){
 
 #' Discretise with rpart method
 #'
-#' @param Y
-#' @param quanti
+#' @param Y Classes of observations
+#' @param quanti Numeric observations to discretise
 #'
-#' @description Discretise with rpart method using the library rpart
+#' @description Discretise by recursive tree using the library rpart
 #'
-#' @return A Dataframe with values discretised
+#' @return An object (objetRpart) with attributs:
+#' @return cutp = List of cuts (as: -Inf 5.45 6.15 Inf) for each discretised values
+#' @return disc.data = Dataframe of discretised values. The modalities are factors.
 #' @export
 #'
 #' @import rpart
 #' @examples
-fit.rpart = function(Y, quanti){
-  #Fonction qui calcule un arbre de d?cision pour chaque X en fonction de Y
-  #X : variables explicatives
-  #Y : variable ? expliquer
-
-
-  #Discr?tisation de chaque variable
+#' data(iris)
+#' df = iris
+#' Y = df["Species"]
+#' quanti = df[colnames(df) != "Species"]
+#' discretised = rpart_fit(Y, quanti)
+rpart_fit = function(Y, quanti){
+  #Discretisation de chaque variable
   cutp = list()
   quanti_disc = c()
   num_col = c()
@@ -85,17 +87,25 @@ fit.rpart = function(Y, quanti){
   return(list(cutp = cutp, disc.data = disc.data)) #sortie : liste compos?e des points de coupure et du data frame des variables discr?tis?es
 }
 
-#' Discretise newdata by using the rpart model
+#' Discretise newdata by using the rpart model (objetRpart)
 #'
-#' @param objetRpart The Rpart object returned by fit.rpart (model)
+#' @param objetRpart The objetRpart object returned by fit.rpart
 #' @param newdata New data to discretise
 #'
-#' @return Dataframe of discretised data
+#' @return Dataframe of discretised newdata
 #' @export
 #'
 #' @import rpart
 #' @examples
-transform.rpart = function(objetRpart, newdata){
+#' data(iris)
+#' df1 = iris[1:120,]
+#' Y1 = df1["Species"]
+#' quanti1 = df1[colnames(df1) != "Species"]
+#' discretised = rpart_fit(Y1, quanti1)
+#' df2 = iris[121:150,]
+#' quanti2 = df2[colnames(df2) != "Species"]
+#' newdata_discretised = rpart_transform(discretised, quanti2)
+rpart_transform = function(objetRpart, newdata){
   #Fonction qui discr?tise un nouveau data frame selon des points de coupures existants
   #objetRpart : objet issu de la m?thode rpart_fit
   #newdata : nouveau data frame ? discr?tiser

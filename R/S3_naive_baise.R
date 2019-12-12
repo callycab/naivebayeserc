@@ -79,7 +79,7 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
   if(ncol(quanti)>0){
     # Discretisation avec rpart
     if (discretise == "rpart"){
-      disc = fit.rpart(Y, quanti)
+      disc = rpart_fit(Y, quanti)
       instance$disc.values = disc
       disc = disc$disc.data
     }else if(discretise == "mdlp"){
@@ -143,6 +143,7 @@ fit = function(formula, data, m=1, discretise="rpart", selectvar=TRUE){
 #'
 #' @description Classify new data from a NBAYES model
 #'
+#' @aliases predict
 #' @usage predict(object, newdata, type="class")
 #'
 #' @param object Object of classe NBAYES fitted model
@@ -193,7 +194,7 @@ predict.NBAYES = function(object, newdata, type="class"){
   if (ncol(quanti)>0){
     if (object$disc.param == "rpart"){
       # Si la discretisation du fit etait rpart
-      quanti_disc = transform.rpart(object$disc.values, quanti)
+      quanti_disc = rpart_transform(object$disc.values, quanti)
     }else{
       # Si la discretisation du fit etait mdlp
       quanti_disc = FSelectorRcpp::discretize_transform(object$disc.values, quanti)

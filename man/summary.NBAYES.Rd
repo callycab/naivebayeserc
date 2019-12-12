@@ -7,11 +7,8 @@
 \method{summary}{NBAYES}(objet)
 }
 \arguments{
-\item{objet}{}
-}
-\value{
-Print the significance of the link between each variable X and Y (signif)
+\item{objet}{NBAYES object}
 }
 \description{
-Summary from NBAYES object
+Print the significance of the link between each variable X and Y (signif)
 }

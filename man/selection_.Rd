@@ -9,13 +9,20 @@ selection_(y, X)
 \arguments{
 \item{y}{classe to predict}
 
-\item{X}{set of variables to choose}
+\item{X}{Dataframe of variables to choose from}
 }
 \value{
-A list with the name of selected columns
+A list with the name of selected variables
 }
 \description{
 Methode used by fit.NBAYES to select variables.
 
 It is a step-forward algorithme.
+}
+\examples{
+data(iris)
+df = iris
+y = df["Species"]
+X = df[colnames(df) != "Species"]
+xselect = selection_(y,X)
 }

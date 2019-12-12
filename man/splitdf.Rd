@@ -7,7 +7,9 @@
 splitdf(formula, data)
 }
 \arguments{
-\item{data}{}
+\item{formula}{formula to extract the Y value from}
+
+\item{data}{Dataframe with data to split}
 }
 \value{
 A list with 3 dataframes : quali, quanti and Y

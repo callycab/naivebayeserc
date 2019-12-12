@@ -1,6 +1,6 @@
 Package: naivebayeserc
 Title: Naive Bayes Classifier
-Version: 0.0.1.1200
+Version: 0.0.1.2000
 Authors@R: c(
     person(given = "Cedric",
            family = "Cally--caballero",

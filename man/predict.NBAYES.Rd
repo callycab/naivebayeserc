@@ -2,6 +2,7 @@
 % Please edit documentation in R/S3_naive_baise.R
 \name{predict.NBAYES}
 \alias{predict.NBAYES}
+\alias{predict}
 \title{Predict from NBAYES}
 \usage{
 predict(object, newdata, type="class")

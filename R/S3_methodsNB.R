@@ -2,12 +2,12 @@
 #'
 #' @param objet The NBAYES object returned by the fit function
 #'
-#' @return Print some attributs of the NBAYES objects:
-#' @return Discretisation method used for the fit (disc.param)
-#' @return Varriable to classify (Y)
-#' @return Variables used by the model - only variables kept after discretisation and selection (X)
-#' @return Prior probabilities computed (apriori)
-#' @return COnditional probabilities (p_conditional)
+#' @details Print some attributs of the NBAYES objects:
+#' @details Discretisation method used for the fit (disc.param)
+#' @details Varriable to classify (Y)
+#' @details Variables used by the model - only variables kept after discretisation and selection (X)
+#' @details Prior probabilities computed (apriori)
+#' @details COnditional probabilities (p_conditional)
 #' @export
 print.NBAYES = function(objet){
   cat("NBAYES object (from naivebayeserc)\n\n")
@@ -18,14 +18,14 @@ print.NBAYES = function(objet){
   print(objet$apriori)
   cat("\n")
   cat("Computed conditional probabilities :\n\n")
-  print( head(object$p_conditional) )
+  print( head(objet$p_conditional) )
 }
 
 #' Summary from NBAYES object
 #'
-#' @param objet
+#' @param objet NBAYES object
 #'
-#' @return Print the significance of the link between each variable X and Y (signif)
+#' @description Print the significance of the link between each variable X and Y (signif)
 #' @export
 summary.NBAYES = function(objet){
   cat("NBAYES object (from naivebayeserc)\n\n")
@@ -34,15 +34,12 @@ summary.NBAYES = function(objet){
   print(objet$signif)
 }
 
-#' Summary from NBAYES object
+#' Plot from NBAYES object
 #'
 #' @description Plot the normalized statistics of the link between Y an each variable
-#' @param objet
 #'
-#' @return
+#' @param objet NBAYES object
 #' @export
-#'
-#' @examples
 plot.NBAYES = function(objet){
   summary(objet)
   cat("Plot of the \"normalized\" statistics of the link between", objet$Y, "and each variable on the plot window")
